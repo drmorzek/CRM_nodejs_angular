@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const passport = require('passport')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -11,6 +12,9 @@ const positionRoutes = require("./routes/position")
 const analiticsRoutes = require("./routes/analitics")
 
 const app = express();
+
+app.use(passport.initialize())
+require('./middleware/passport')(passport)
 
 app.use(morgan("dev"))
 app.use(bodyParser.urlencoded({ extended : true}))
