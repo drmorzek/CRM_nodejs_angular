@@ -1,4 +1,13 @@
+const errorHandler = requireRoot("utils/errorHandler")
+
 module.exports.getCategory = (req,res) => {
+    // try {
+        
+
+    // } catch(e){
+    //     errorHandler(res, e)
+    // }
+    console.log(req.user.id)
     res.status(200).json("getOrder")
 }
 

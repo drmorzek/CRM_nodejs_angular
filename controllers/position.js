@@ -1,6 +1,6 @@
 
 
-module.exports.getPositionByCategory = (req,res) => {
+module.exports.getPositionByCategoryId = (req,res) => {
     res.status(200).json("getOrder")
 }
 

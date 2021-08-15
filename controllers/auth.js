@@ -2,6 +2,7 @@ const UserModel = requireRoot("models/User")
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const {JWT_KEY} = requireRoot("config/keys")
+const errorHandler = requireRoot("utils/errorHandler")
 
 module.exports.login = async (req,res) => {
     try {
@@ -40,10 +41,7 @@ module.exports.login = async (req,res) => {
         }
 
     } catch(e){
-        res.status(400).json({
-            error: true,
-            message : e.toString()
-        })
+        errorHandler(res, e)
     }
     
 }
@@ -71,10 +69,7 @@ module.exports.register = async (req,res) => {
         }        
 
     } catch(e){
-        res.status(400).json({
-            error: true,
-            message : e.toString()
-        })
+        errorHandler(res, e)
     }
     
 }
