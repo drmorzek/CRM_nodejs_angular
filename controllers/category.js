@@ -5,7 +5,9 @@ const errorHandler = requireRoot("utils/errorHandler")
 module.exports.getCategory = async (req, res) => {
     try {
         const categories = await CategoryModel.find({ user: req.user.id })
-        res.status(200).json(categories)
+        res.status(200).json(
+            categories
+        )
 
     } catch (e) {
         errorHandler(res, e)

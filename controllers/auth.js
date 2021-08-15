@@ -21,21 +21,18 @@ module.exports.login = async (req,res) => {
                 }, JWT_KEY, {expiresIn: 60 * 60})
           
                 res.status(200).json({
-                    error: false,
                     token: `Bearer ${token}`
                 })
 
               } else {
                 // Пароли не совпали
                 res.status(401).json({
-                    error: true,
                     message: "The passwords don't match. Try again."
                 })
               }
             
         } else {
             res.status(404).json({
-                error: true,
                 message : `User with email ${email} not found. Try again.`
             })
         }
@@ -54,7 +51,6 @@ module.exports.register = async (req,res) => {
 
         if(find) {
             res.status(409).json({
-                error: true,
                 message : `User with email ${email} already yet. Try again.`
             })
         } else {
@@ -62,10 +58,7 @@ module.exports.register = async (req,res) => {
             const salt = bcrypt.genSaltSync(10)
             const user = new UserModel( { email, password : bcrypt.hashSync(password, salt) } )
             await user.save()
-            res.status(201).json({
-                error: false,
-                user
-            })
+            res.status(201).json(user)
         }        
 
     } catch(e){
