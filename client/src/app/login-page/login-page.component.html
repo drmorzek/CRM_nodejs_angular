@@ -1,16 +1,52 @@
-<div class="card">
+<form [formGroup]="form" class="card" (ngSubmit)="onSubmit">
     <div class="card-content">
         <span class="card-title">Войти в систему</span>
         <div class="input-field">
-            <input id="email" type="email" required>
+            <input 
+            formControlName="email"
+            [ngClass]="{invalid: form.controls['email'].invalid && form.controls['email'].touched}"
+            id="email" 
+            type="email" 
+            required
+            >
             <label for="email">Email:</label>
+            <span 
+            *ngIf="form.controls['email'].invalid && form.controls['email'].touched"
+            class="helper-text red-text"
+            >
+            <span *ngIf="form.controls['email'].hasError('required')"> Email не должен быть пустым</span>
+            <span *ngIf="form.controls['email'].hasError('email')"> Введите корректный Email</span>
+
+            </span>
         </div>
         <div class="input-field">
-            <input id="password" type="password" required>
+            <input 
+            id="password" 
+            type="password"
+            formControlName="password" 
+            [ngClass]="{invalid: form.controls['password'].invalid && form.controls['password'].touched}"
+            >
             <label for="password">Пароль:</label>
+            <span 
+            *ngIf="form.controls['password'].invalid && form.controls['password'].touched"
+            class="helper-text red-text"
+            >
+            <span *ngIf="form.controls['password'].hasError('required')"> Пароль не должен быть пустым</span>
+            <span *ngIf="form.controls['password'].hasError('minlength')"> 
+                Пароль должен быть более {{ form.get('password')?.errors?.minlength.requiredLength}} символов.<br> 
+                Сейчас введено {{ form.get('password')?.errors?.minlength.actualLength}} символа(-ов)
+            </span>
+
+            </span>
         </div>
     </div>
     <div class="card-action">
-        <button class="modal-action btn waves-effect">Войти</button>
+        <button 
+        type="submit" 
+        class="modal-action btn waves-effect"
+        [disabled]="form.invalid"
+        >
+            Войти
+        </button>
     </div>
-</div>
+</form>
