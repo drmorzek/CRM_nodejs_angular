@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const router = Router()
 
-const orderController = require("../controllers/order")
+const orderController = requireRoot("controllers/order")
 
 router.get("/", orderController.getOrder)
 router.post("/", orderController.addOrder)

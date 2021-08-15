@@ -1,3 +1,7 @@
+const path = require("path")
+global.__dirname = process.cwd()
+global.requireRoot = file => require(path.join(__dirname, file))
+
 const {app, mongoose} = require('./app');
 
 const { PORT , MONGO_URL} = require("./config/keys")

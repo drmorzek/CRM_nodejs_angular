@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const router = Router()
 
-const analiticsController = require("../controllers/analitics")
+const analiticsController = requireRoot("controllers/analitics")
 
 router.get("/overview", analiticsController.getOverview)
 router.get("/analytics", analiticsController.getAnalitics)

@@ -1,7 +1,7 @@
 const { Router } = require("express")
 const router = Router()
 
-const positionController = require("../controllers/position")
+const positionController = requireRoot("controllers/position")
 
 router.get("/:category", positionController.getPositionByCategory)
 router.delete("/:id", positionController.deletePosition)
